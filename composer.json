@@ -1,0 +1,38 @@
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url" : "https://wpackagist.org"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/RaphaelBatagini/sage-custom-install"
+        }
+    ],
+    "require"     : {
+        "webfatorial/wordpress": "4.2.2",
+        "wpackagist-plugin/w3-total-cache": "0.14.4",
+        "wpackagist-plugin/wordpress-seo": "14.7",
+        "raphaelbatagini/sage-custom-install": "dev-master"
+    },
+    "extra": {
+        "wordpress-install-dir": "core",
+        "installer-paths": {
+            "app/plugins/{$name}/": ["type:wordpress-plugin"],
+            "app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+            "app/themes/{$name}/": ["type:wordpress-theme"]
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "mkdir -p app/languages/",
+            "cp -R core/wp-content/languages/* app/languages/"
+        ],
+        "post-update-cmd": [
+            "mkdir -p app/languages/",
+            "cp -R core/wp-content/languages/* app/languages/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
